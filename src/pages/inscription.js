@@ -1,7 +1,6 @@
 import Navbar from '../Navbar/Navbar';
 import '../index.css';
 import React, { useState } from "react";
-import '../App.css';
 
 function Inscription() {
     const [fullname, setFullname] = useState("");
@@ -16,7 +15,7 @@ function Inscription() {
   
     return (
       <div className="bg-grey-lighter min-h-screen flex flex-col">
-        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 scrollable-container">
           <form
             className="bg-white px-6 py-8 rounded shadow-md text-black w-full"
             onSubmit={handleSubmit}
@@ -26,7 +25,16 @@ function Inscription() {
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4"
               name="fullname"
-              placeholder="Full Name"
+              placeholder="Nom"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
+            />
+
+            <input
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+              name="fullname"
+              placeholder="Prenom"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
             />
@@ -44,24 +52,17 @@ function Inscription() {
               type="password"
               className="block border border-grey-light w-full p-3 rounded mb-4"
               name="password"
-              placeholder="Password"
+              placeholder="Age"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input
-              type="password"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="confirm_password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+
   
             <button
               type="submit"
               className="w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
             >
-              Create Account
+              Creer un compte
             </button>
   
             <div className="text-center text-sm text-grey-dark mt-4">
@@ -83,9 +84,9 @@ function Inscription() {
           </form>
   
           <div className="text-grey-dark mt-6">
-            Already have an account?{" "}
-            <a className="no-underline border-b border-blue text-blue" href="../login/">
-              Log in
+            T'as déja un compte?{" "}
+            <a className="no-underline border-b border-blue text-blue" href="../">
+              Connectes toi
             </a>
             .
           </div>
@@ -93,4 +94,6 @@ function Inscription() {
       </div>
     );
   }
+
+
 export default Inscription

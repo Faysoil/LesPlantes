@@ -9,7 +9,7 @@ function DataFetching() {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         axios
-        .get('http:localhost:3000/test/posts')
+        .get('https://jsonplaceholder.typicode.com/posts')
         .then(res => {
           console.log(res)
           setPosts(res.data)

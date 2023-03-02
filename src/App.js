@@ -7,7 +7,7 @@ import { Container } from '@mui/system';
 function App() {
   return (
     
-    <div className="App">
+   <body class="scrollable-container"><div className="App">
 <div class="text-center mt-24">
   <div class="flex items-center justify-center">
      <svg fill="none" viewBox="0 0 24 24" class="w-12 h-12 text-blue-500" stroke="currentColor">
@@ -74,7 +74,7 @@ function App() {
   </div>
 </form>
 </div>
-  </div>
+  </div></body> 
   );
 }
 

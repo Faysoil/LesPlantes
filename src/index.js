@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import Profil from './pages/Profil';
 import Inscription from './pages/Inscription';
 import DataFetching from './pages/DataFetching';
+import CreerPost from './pages/CreerPost';
 
 const router = createBrowserRouter([
 {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
 {
   path:"/Inscription",
   element: <Inscription></Inscription>
+},
+{
+  path:"/Creer",
+  element: <CreerPost></CreerPost>
 },
 ])
 
