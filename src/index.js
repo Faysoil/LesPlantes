@@ -2,13 +2,54 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import BlogPlantes from './pages/BlogPlantes';
+import Messagerie from './pages/Messagerie';
+import Carte from './pages/Carte';
+import Connexion from './pages/Connexion';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import Profil from './pages/Profil';
+import Inscription from './pages/Inscription';
+import DataFetching from './pages/DataFetching';
+
+const router = createBrowserRouter([
+{
+ path: "/", 
+ element: <App></App>
+},
+{
+  path:"/BlogPlantes",
+  element: <BlogPlantes></BlogPlantes>,
+},
+{
+  path:"/Messagerie",
+  element: <Messagerie></Messagerie>,
+},
+{
+  path:"/Carte",
+  element: <Carte></Carte>,
+},
+{
+  path:"/Profil",
+  element: <Profil></Profil>,
+},
+{
+  path:"/Connexion",
+  element: <Connexion></Connexion>,
+},
+{
+  path:"/Data",
+  element: <DataFetching></DataFetching>,
+},
+{
+  path:"/Inscription",
+  element: <Inscription></Inscription>
+},
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,0 +1,21 @@
+.nav{
+    height: 50px;
+    background-color: green;
+    background: linear-gradient(45deg, rgb(59, 213, 48), rgb(8, 122, 31));
+}
+.liste{
+    list-style-type: none;
+    background: linear-gradient(45deg, rgb(59, 213, 48), rgb(15, 93, 10));
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position : relative;
+}
+.item{
+    margin-right: 10px ;
+    cursor: pointer;
+}
+.btn{
+    display: none;
+}
