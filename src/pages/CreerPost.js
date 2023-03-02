@@ -2,12 +2,12 @@ import React, {useState} from 'react'
 import '../index.css';
 import '../App.css';
 import Navbar from '../Navbar/Navbar';
+import axios from 'axios';
 
 function CreerPost() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -79,14 +79,35 @@ function CreerPost() {
                 />
               </div>
             
-              <button className="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600">
-                ADD POST
-              </button>
+              <button className="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600" onClick={handleSubmit}>
+  ADD POST
+</button>
+
             </div>
           </div>
         </div>
       </form></div>
+
+
     );
-  }
   
+}
+
+//     const handleSubmit = (e) => {
+//      e.preventDefault();
+//      createPost(title, description, name, email);
+//  };
+  function createPost(title, description, name, email) {
+    const data = {
+        title: title,
+        description: description,
+        name: name,
+        email: email
+    };
+    axios.post('/localhost:3000/posts', data)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+}
+
+ 
 export default CreerPost

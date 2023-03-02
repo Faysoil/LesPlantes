@@ -12,6 +12,7 @@ import Profil from './pages/Profil';
 import Inscription from './pages/Inscription';
 import DataFetching from './pages/DataFetching';
 import CreerPost from './pages/CreerPost';
+import Planteurs from './pages/Planteurs';
 
 const router = createBrowserRouter([
 {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
 {
   path:"/Creer",
   element: <CreerPost></CreerPost>
+},
+{
+  path:"/Planteurs",
+  element: <Planteurs></Planteurs>
 },
 ])
 
