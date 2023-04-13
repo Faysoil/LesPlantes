@@ -1,21 +1,38 @@
-import React from 'react'
-import '../index.css';
+import logo from '../logo.svg';
+  import '../App.css';
+  import Navbar from '../Navbar/Navbar';
+  import React, { useState, useEffect, Component } from 'react';
+  import { Container } from '@mui/system';
+  import axios from 'axios';
 
 function Planteurs() {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+      axios
+      .get('http://localhost:3000/posts/1')
+      .then(res => {
+        console.log(res)
+        setPosts(res.data)
+      })
+      .catch(err =>{
+          console.log(err)
+      })
+     
+  }, [])
 
   return (
-<div class="flex justify-between m-6">
-  <div class="flex flex-col h-full max-w-lg mx-auto bg-gray-800 rounded-lg">
+<div class="flex justify-between m-6 scrollable-container">
+  <div class="article-wrapper flex flex-col h-full max-w-lg mx-auto bg-gray-800 rounded-lg">
           <img
             class="rounded-lg rounded-b-none"
-            src="attashi.jpg"
+            src={posts.image}
             alt="thumbnail"
             loading="lazy"
           />
           <div class="flex justify-between -mt-4 px-4">
             <span
               class="inline-block ring-4 bg-red-500 ring-gray-800 rounded-full text-sm font-medium tracking-wide text-gray-100 px-3 pt-0.5"
-              >Tech</span
+              >{posts.title}</span
             >
             <span
               class="flex h-min space-x-1 items-center rounded-full text-gray-400 bg-gray-800 py-1 px-2 text-xs font-medium"

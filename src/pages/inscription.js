@@ -1,68 +1,96 @@
-import Navbar from '../Navbar/Navbar';
+import React, {useState} from 'react'
 import '../index.css';
-import React, { useState } from "react";
+import '../App.css';
+import Navbar from '../Navbar/Navbar';
+import axios from 'axios';
+
+
 
 function Inscription() {
-    const [fullname, setFullname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+  const url ="http://localhost:3000/users"
+  const [data, setData] = useState({
+    userId:"",
+    name:"",
+    lastName:"",
+    age:"",
+    email:"",
+    password:"",
+
+  });
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // code pour traiter les données du formulaire
-    };
+function submit(e){
+  e.preventDefault();
+  axios.post(url,{
+    userId: data.userId,
+    name: data.name,
+    lastName: data.lastName,
+    age: data.age,
+    email: data.email,
+    password: data.password,
+  })
+  .then(res=>{
+    console.log(res.data)
+  })
+}
+
+  function handle(e){
+const newdata={...data}
+newdata[e.target.id] = e.target.value
+setData(newdata)
+console.log(newdata)
+  };
+
   
     return (
       <div className="bg-grey-lighter min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2 scrollable-container">
           <form
             className="bg-white px-6 py-8 rounded shadow-md text-black w-full"
-            onSubmit={handleSubmit}
-          >
+            onSubmit={(e)=> submit(e)}>
             <h1 className="mb-8 text-3xl text-center">Sign up</h1>
+
             <input
+             onChange={(e)=>handle(e)} placeholder="Pseudo" id="userId" value={data.userId} 
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="fullname"
-              placeholder="Nom"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+            />
+
+          <input
+             onChange={(e)=>handle(e)} placeholder="Prenom" id="name" value={data.name} 
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
             />
 
             <input
+             onChange={(e)=>handle(e)} placeholder="nom" id="lastName" value={data.lastName} 
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="fullname"
-              placeholder="Prenom"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+            />
+
+            <input
+             onChange={(e)=>handle(e)} placeholder="age" id="age" value={data.age} 
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
+            />
+
+            <input
+             onChange={(e)=>handle(e)} placeholder="email" id="email" value={data.email} 
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4"
             />
   
             <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-  
-            <input
+             onChange={(e)=>handle(e)} placeholder="mot de passe" id="password" value={data.password}
               type="password"
               className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="password"
-              placeholder="Age"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
             />
 
   
             <button
               type="submit"
-              className="w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
+              className="w-full text-center py-3 rounded bg-green focus:outline-none my-1"
             >
-              Creer un compte
+              submit
             </button>
   
             <div className="text-center text-sm text-grey-dark mt-4">

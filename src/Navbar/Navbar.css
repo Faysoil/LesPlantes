@@ -1,4 +1,5 @@
 .nav{
+    top: 0px;
     height: 50px;
     background-color: green;
     background: linear-gradient(45deg, rgb(59, 213, 48), rgb(8, 122, 31));
@@ -13,9 +14,35 @@
     position : relative;
 }
 .item{
-    margin-right: 10px ;
+    font-size: 1.5rem;
+    margin-right: 50px ;
     cursor: pointer;
 }
+.item:hover{
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    }
 .btn{
     display: none;
+}
+
+@media (max-width: 767px) {
+    .liste {
+        flex-wrap: wrap;
+        height: auto;
+    }
+    
+    .item {
+        margin: 10px;
+    }
+    
+    .btn {
+        display: block;
+    }
+    
+    .item:hover {
+        background-color: white;
+        color: green;
+        border-radius: 5px;
+    }
 }

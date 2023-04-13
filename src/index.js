@@ -16,7 +16,7 @@ import Planteurs from './pages/Planteurs';
 
 const router = createBrowserRouter([
 {
- path: "/", 
+ path: "/App", 
  element: <App></App>
 },
 {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
   element: <Profil></Profil>,
 },
 {
-  path:"/Connexion",
+  path:"/",
   element: <Connexion></Connexion>,
 },
 {
@@ -55,6 +55,11 @@ const router = createBrowserRouter([
   path:"/Planteurs",
   element: <Planteurs></Planteurs>
 },
+{
+  path:"/Post",
+  element: <Planteurs></Planteurs>
+},
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

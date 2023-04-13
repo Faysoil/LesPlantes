@@ -5,20 +5,43 @@ import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
 
 function CreerPost() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [name, setName] = useState("");
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Add post logic here
+    const url ="http://localhost:3000/posts"
+    const [data, setData] = useState({
+      title:"",
+      description:"",
+      name:"",
+      image:"",
+      idUser:"",
+      adresse:"",
+
+    });
+  function submit(e){
+    e.preventDefault();
+    axios.post(url,{
+      title: data.title,
+      description: data.description,
+      name: data.name,
+      image: data.image,
+      adresse: data.adresse,
+      idUser: data.idUser,
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+  }
+
+    function handle(e){
+ const newdata={...data}
+ newdata[e.target.id] = e.target.value
+ setData(newdata)
+  console.log(newdata)
     };
   
     return (
     
         <div class="scrollable-container">
         <Navbar />    
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e)=> submit(e)}>
         <div className="bg-indigo-50 min-h-screen md:px-20 pt-6">
           <div className="bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
             <h1 className="text-center text-2xl font-bold text-gray-500 mb-10">
@@ -29,13 +52,16 @@ function CreerPost() {
                 <label htmlFor="title" className="text-lx font-serif">
                   Titre:
                 </label>
-                <input
-                  type="text"
-                  placeholder="title"
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
+
+
+
+
+
+                <input type="text" onChange={(e)=>handle(e)} placeholder="idUser" id="idUser" value={data.idUser} className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
+                />
+                <input type="text" onChange={(e)=>handle(e)} placeholder="title" id="title" value={data.title} className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
+                />
+                <input type="text" onChange={(e)=>handle(e)} placeholder="image" id="image" value={data.image} className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
                 />
               </div>
               <div>
@@ -45,13 +71,16 @@ function CreerPost() {
                 >
                   Description:
                 </label>
-                <textarea
-                  id="description"
+
+
+
+
+
+                <textarea onChange={(e)=>handle(e)} id="description"
                   cols="30"
                   rows="10"
                   placeholder="write here.."
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={data.description}
                   className="w-full font-serif  p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"
                 ></textarea>
               </div>
@@ -63,25 +92,52 @@ function CreerPost() {
           </svg>
           <span className="text-gray-600 font-medium">Upload file</span>
         </label>
-        <input id="upload" type="file" className="hidden" />
+        <input id="image" value={data.image} type="text" className="" />
       </div>
               <div>
                 <label htmlFor="name" className="text-lx font-serif">
                   Nom de la plante:
                 </label>
+
+
+
+
+
                 <input
                   type="text"
                   placeholder="name"
+                  onChange={(e)=>handle(e)}
                   id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={data.name}
+                  className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="name" className="text-lx font-serif">
+                  adresse
+                </label>
+
+
+
+
+
+                <input
+                  type="text"
+                  placeholder="adresse"
+                  onChange={(e)=>handle(e)}
+                  id="adresse"
+                  value={data.adresse}
                   className="ml-2 outline-none py-1 px-2 text-md border-2 rounded-md"
                 />
               </div>
             
-              <button className="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600" onClick={handleSubmit}>
-  ADD POST
+              <button className="px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-indigo-600">
+  submit
 </button>
+
+        
+
 
             </div>
           </div>
