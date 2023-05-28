@@ -1,6 +1,7 @@
 import logo from '../logo.svg';
   import '../App.css';
   import Navbar from '../Navbar/Navbar';
+  import Footer from '../Navbar/Footer';
   import React, { useState, useEffect, Component } from 'react';
   import { Container } from '@mui/system';
   import axios from 'axios';
@@ -65,6 +66,7 @@ import logo from '../logo.svg';
                   </article>
             ))}
                 </section>
+                <Footer />
       </div>
       
   )

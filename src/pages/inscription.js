@@ -2,11 +2,14 @@ import React, {useState} from 'react'
 import '../index.css';
 import '../App.css';
 import Navbar from '../Navbar/Navbar';
+import Footer from '../Navbar/Footer';
 import axios from 'axios';
 
 
 
 function Inscription() {
+  const [validation, setValidation] = useState(false); // état local pour stocker la valeur de la checkbox
+
   const url ="http://localhost:3000/users"
   const [data, setData] = useState({
     userId:"",
@@ -39,6 +42,12 @@ newdata[e.target.id] = e.target.value
 setData(newdata)
 console.log(newdata)
   };
+
+  function soumettreFormulaire(event) {
+    event.preventDefault(); // empêche la page de se recharger lors de la soumission du formulaire
+    // traitez les données du formulaire ici...
+  }
+
 
   
     return (
@@ -86,29 +95,27 @@ console.log(newdata)
             />
 
   
-            <button
-              type="submit"
-              className="w-full text-center py-3 rounded bg-green focus:outline-none my-1"
-            >
-              submit
-            </button>
-  
-            <div className="text-center text-sm text-grey-dark mt-4">
-              By signing up, you agree to the{" "}
-              <a
-                className="no-underline border-b border-grey-dark text-grey-dark"
-                href="#"
-              >
-                Terms of Service
-              </a>{" "}
-              and{" "}
-              <a
-                className="no-underline border-b border-grey-dark text-grey-dark"
-                href="#"
-              >
-                Privacy Policy
-              </a>
-            </div>
+    <form onSubmit={soumettreFormulaire}>
+      <input
+        type="checkbox"
+        id="validation"
+        name="validation"
+        checked={validation}
+        onChange={(event) => setValidation(event.target.checked)}
+      />
+      <label htmlFor="validation">
+        Je confirme avoir pris connaissance des{' '}
+        <a href="/ReglesConf">règles de confidentialité</a>.
+      </label>
+
+      <button
+        type="submit"
+        className="w-full text-center py-3 rounded bg-green focus:outline-none my-1"
+        disabled={!validation} // désactive le bouton si la case n'est pas cochée
+      >
+        submit
+      </button>
+      </form>
           </form>
   
           <div className="text-grey-dark mt-6">
@@ -118,7 +125,9 @@ console.log(newdata)
             </a>
             .
           </div>
+          
         </div>
+        
       </div>
     );
   }

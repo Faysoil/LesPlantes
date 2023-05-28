@@ -13,6 +13,8 @@ import Inscription from './pages/Inscription';
 import DataFetching from './pages/DataFetching';
 import CreerPost from './pages/CreerPost';
 import Planteurs from './pages/Planteurs';
+import ReglesConf from './pages/ReglesConf';
+import MentionLeg from './pages/MentionLeg';
 
 const router = createBrowserRouter([
 {
@@ -59,6 +61,15 @@ const router = createBrowserRouter([
   path:"/Post",
   element: <Planteurs></Planteurs>
 },
+{
+  path:"/ReglesConf",
+  element: <ReglesConf></ReglesConf>
+},
+{
+  path:"/MentionLeg",
+  element: <MentionLeg></MentionLeg>
+},
+
 
 ])
 
